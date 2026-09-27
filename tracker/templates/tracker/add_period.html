@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Period</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8e3a68;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #8e3a68;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #702d52;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #8e3a68;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌸 Add Period</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter name"
+            required
+        >
+
+        <label for="start_date">Start Date</label>
+        <input
+            type="date"
+            id="start_date"
+            name="start_date"
+            required
+        >
+
+        <label for="end_date">End Date</label>
+        <input
+            type="date"
+            id="end_date"
+            name="end_date"
+            required
+        >
+
+        <label for="notes">Notes</label>
+        <textarea
+            id="notes"
+            name="notes"
+            placeholder="Enter any notes..."
+        ></textarea>
+
+        <button type="submit">
+            Save Period
+        </button>
+
+    </form>
+
+    <a href="{% url 'home' %}" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

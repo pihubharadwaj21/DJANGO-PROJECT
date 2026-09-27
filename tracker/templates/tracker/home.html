@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Period Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8e3a68;
+        }
+
+        .add-button {
+            display: block;
+            width: 180px;
+            margin: 20px auto;
+            padding: 12px;
+            text-align: center;
+            background-color: #8e3a68;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .period-card {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .period-card h2 {
+            color: #8e3a68;
+        }
+
+        .period-card p {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #777;
+            font-size: 18px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌸 Period Tracker</h1>
+
+    <a href="{% url 'add_period' %}" class="add-button">
+        + Add Period
+    </a>
+
+
+    {% if periods %}
+
+        {% for period in periods %}
+
+        <div class="period-card">
+
+            <h2>{{ period.name }}</h2>
+
+            <p>
+                <strong>Start Date:</strong>
+                {{ period.start_date }}
+            </p>
+
+            <p>
+                <strong>End Date:</strong>
+                {{ period.end_date }}
+            </p>
+
+            <p>
+                <strong>Period Length:</strong>
+                {{ period.period_length }} days
+            </p>
+
+            <p>
+                <strong>Estimated Next Period:</strong>
+                {{ period.next_period_date }}
+            </p>
+
+            {% if period.notes %}
+            <p>
+                <strong>Notes:</strong>
+                {{ period.notes }}
+            </p>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p class="no-data">
+            No period records found.
+        </p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
